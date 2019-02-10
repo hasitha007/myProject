@@ -3,75 +3,37 @@
     <mat-icon>menu</mat-icon>
   </button>
   <div td-toolbar-content layout="row" layout-align="center center" flex>
-    <span>Quickstart</span>
+    <span>Hasitha's Dashboard</span>
     <span flex></span>
-    <a mat-icon-button matTooltip="Docs" href="https://teradata.github.io/covalent/" target="_blank"><mat-icon>chrome_reader_mode</mat-icon></a>
-    <a mat-icon-button matTooltip="Github" href="https://github.com/teradata/covalent" target="_blank"><mat-icon svgIcon="assets:github"></mat-icon></a>
   </div>
   <div layout-gt-sm="row" tdMediaToggle="gt-xs" [mediaClasses]="['push-sm']">
     <div flex-gt-sm="60">
       <div layout-gt-xs="row">
         <div flex-gt-xs="100">
           <mat-card>
-            <mat-card-title>Products Sales</mat-card-title>
-            <mat-card-subtitle>usage stats for our products</mat-card-subtitle>
+            <mat-card-title>Favorite Stocks </mat-card-title>
+            <mat-card-subtitle>stock price changing graph</mat-card-subtitle>
             <mat-divider></mat-divider>
             <div class="chart-height push-top push-right-sm">
-              <ngx-charts-area-chart-stacked
-                [scheme]="colorScheme"
+              <ngx-charts-line-chart
+                [scheme]="{ domain: [ '#4DD0E1', '#BA68C8', '#FF7043' ] }"
                 [results]="multi"
                 [gradient]="gradient"
-                [xAxis]="showXAxis"
-                [yAxis]="showYAxis"
-                [legend]="showLegend"
-                [showXAxisLabel]="showXAxisLabel"
-                [showYAxisLabel]="showYAxisLabel"
+                [autoScale]="false"
+                [xAxis]="true"
+                [yAxis]="true"
+                [legend]="true"
+                [showXAxisLabel]="true"
+                [showYAxisLabel]="true"
                 [xAxisLabel]="xAxisLabel"
                 [yAxisLabel]="yAxisLabel"
-                [yAxisTickFormatting]="axisDigits">
-              </ngx-charts-area-chart-stacked>
+                [xAxisTickFormatting]="axisDate">
+              </ngx-charts-line-chart>
             </div>
           </mat-card>
         </div>
       </div>
-      <div layout-gt-xs="row">
-        <div flex-gt-xs="33">
-          <mat-card>
-            <mat-card-content class="text-center">
-              <div class="mat-headline push-bottom-none">{{ '2341'| digits }} <mat-icon class="tc-green-500 text-sm">arrow_upward</mat-icon></div>
-              <mat-icon class="icon tc-indigo-700">perm_contact_calendar</mat-icon>
-              <div>
-                <div class="mat-subheading-2 push-bottom-none">Active Users</div>
-                <div class="mat-caption tc-grey-600">updated {{ '2016-06-17 12:59:59' | timeAgo }}</div>
-              </div>
-            </mat-card-content>
-          </mat-card>
-        </div>
-        <div flex-gt-xs="33">
-          <mat-card>
-            <mat-card-content class="text-center">
-              <div class="mat-headline push-bottom-none">{{ '72452903343' | bytes }} <mat-icon class="tc-red-500 text-sm">arrow_downward</mat-icon></div>
-              <mat-icon class="icon tc-light-blue-700">sd_storage</mat-icon>
-              <div>
-                <div class="mat-subheading-2 push-bottom-none">User Disk Usage</div>
-                <div class="mat-caption tc-grey-600">updated {{ '2016-07-18 11:02:59' | timeAgo }}</div>
-              </div>
-            </mat-card-content>
-          </mat-card>
-        </div>
-        <div flex-gt-xs="33">
-          <mat-card>
-            <mat-card-content class="text-center">
-              <div class="mat-headline push-bottom-none">{{ '324523' | digits}} <mat-icon class="tc-green-500 text-sm">arrow_upward</mat-icon></div>
-              <mat-icon class="icon tc-cyan-700">receipt</mat-icon>
-              <div>
-                <div class="mat-subheading-2 push-bottom-none">Pages Viewed</div>
-                <div class="mat-caption tc-grey-600">updated {{ '2016-07-13 09:59:59' | timeAgo }}</div>
-              </div>
-            </mat-card-content>
-          </mat-card>
-        </div>
-      </div>
+
       <mat-card>
         <mat-card-title>Customer Activity</mat-card-title>
         <mat-card-subtitle>Recent activity from select members</mat-card-subtitle>
@@ -94,16 +56,16 @@
     </div>
     <div flex-gt-sm="40">
       <mat-card>
-        <mat-card-title>Alerts</mat-card-title>
-        <mat-card-subtitle>Items requiring attention</mat-card-subtitle>
+        <mat-card-title>Stock Alerts</mat-card-title>
+        <mat-card-subtitle>Stock requiring attention</mat-card-subtitle>
         <mat-divider></mat-divider>
         <mat-list class="will-load alert-list">
           <ng-template tdLoading="alerts.load">
             <ng-template let-item let-last="last" ngFor [ngForOf]="alerts">
               <mat-list-item layout-align="row">
                 <mat-icon matListAvatar class="bgc-amber-800">{{item.icon}}</mat-icon>
-                <h3 matLine> {{item.description}} </h3>
-                <p matLine> {{item.name}} </p>
+                <h3 matLine> {{item.name}} </h3>
+                <p matLine> {{item.description}} </p>
               </mat-list-item>
               <mat-divider *ngIf="!last" [inset]="true"></mat-divider>
             </ng-template>
@@ -112,29 +74,6 @@
         <mat-divider></mat-divider>
         <mat-card-actions>
           <a mat-button color="accent" class="text-upper" [routerLink]="['/logs']">
-            <span>View More</span>
-          </a>
-        </mat-card-actions>
-      </mat-card>
-      <mat-card id="dashboard-favorites-card" class="push-top">
-        <mat-card-title>Favorites</mat-card-title>
-        <mat-card-subtitle>Your favorite products</mat-card-subtitle>
-        <mat-divider></mat-divider>
-        <mat-nav-list class="will-load favorite-list">
-          <ng-template tdLoading="favorites.load">
-            <ng-template let-item let-last="last" ngFor [ngForOf]="products">
-              <mat-list-item layout-align="row" [routerLink]="['/product']">
-                <mat-icon matListAvatar>{{item.icon}}</mat-icon>
-                <h3 matLine> {{item.name}} </h3>
-                <p matLine> {{item.description}} </p>
-              </mat-list-item>
-              <mat-divider *ngIf="!last" [inset]="true"></mat-divider>
-            </ng-template>
-          </ng-template>
-        </mat-nav-list>
-        <mat-divider></mat-divider>
-        <mat-card-actions>
-          <a mat-button color="accent" class="text-upper" [routerLink]="['/product']">
             <span>View More</span>
           </a>
         </mat-card-actions>
