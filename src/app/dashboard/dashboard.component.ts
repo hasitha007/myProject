@@ -7,15 +7,16 @@ import { TdLoadingService } from '@covalent/core/loading';
 
 import { UserService, IUser } from '../users';
 
-import { ItemsService, ProductsService, AlertsService } from '../../services';
+import { ProductsService, AlertsService } from '../../services';
 
 import { multi } from './data';
+import { NewsService } from '../news';
 
 @Component({
   selector: 'qs-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  viewProviders: [ ItemsService, ProductsService, AlertsService ],
+  viewProviders: [ ProductsService, AlertsService ],
 })
 export class DashboardComponent implements OnInit {
 
@@ -51,7 +52,7 @@ export class DashboardComponent implements OnInit {
   autoScale: boolean = true;
 
   constructor(private _titleService: Title,
-              private _itemsService: ItemsService,
+              private _newsService: NewsService,
               private _userService: UserService,
               private _alertsService: AlertsService,
               private _loadingService: TdLoadingService) {
@@ -66,15 +67,15 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._titleService.setTitle( 'Covalent Quickstart' );
+    this._titleService.setTitle( "Hasitha's dashboard");
     this._loadingService.register('items.load');
-    this._itemsService.query().subscribe((items: Object[]) => {
+    this._newsService.query().subscribe((items: Object[]) => {
       this.items = items;
       setTimeout(() => {
         this._loadingService.resolve('items.load');
       }, 750);
     }, (error: Error) => {
-      this._itemsService.staticQuery().subscribe((items: Object[]) => {
+      this._newsService.staticQuery().subscribe((items: Object[]) => {
         this.items = items;
         setTimeout(() => {
           this._loadingService.resolve('items.load');

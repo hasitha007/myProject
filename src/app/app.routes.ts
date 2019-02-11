@@ -17,7 +17,10 @@ const routes: Routes = [{
       }, {
         path: '',
         loadChildren: './users/users.module#UsersModule',
-      },
+      },{
+      path: '',
+      loadChildren: './news/news.module#NewsModule',
+    },
     ],
   },
 ];

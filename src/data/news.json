@@ -1,0 +1,18 @@
+[
+  {
+    "id": "1",
+    "title" : "title Goes here",
+    "by" : "hasitha",
+    "email" : "hasitha@gmail.com",
+    "created" : "10/01/2015 11:05 AM",
+    "description" : "news description"
+  },
+  {
+    "id": "2",
+    "title" : "2 title Goes here",
+    "by" : "2 hasitha",
+    "email" : "2hasitha@gmail.com",
+    "created" : "10/01/2015 11:05 AM",
+    "description" : "2nd news description"
+  }
+]

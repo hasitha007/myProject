@@ -16,7 +16,11 @@ export class MainComponent {
       title: 'Manage Users',
       route: '/users',
       icon: 'people',
-    },
+    }, {
+    title: 'Manage News',
+    route: '/news',
+    icon: 'stars',
+  },
   ];
 
   constructor(private _router: Router) {}
