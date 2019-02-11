@@ -12,11 +12,7 @@ export class MainComponent {
       title: 'Dashboard',
       route: '/',
       icon: 'dashboard',
-    }, {
-      title: 'Manage Users',
-      route: '/users',
-      icon: 'people',
-    }, {
+    } , {
     title: 'Manage News',
     route: '/news',
     icon: 'stars',

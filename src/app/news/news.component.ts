@@ -28,7 +28,7 @@ export class NewsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._titleService.setTitle('Covalent Users');
+    this._titleService.setTitle('Covalent News');
     this.load();
   }
 

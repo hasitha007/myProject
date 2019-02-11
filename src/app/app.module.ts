@@ -28,7 +28,6 @@ import { AppComponent } from './app.component';
 import { RequestInterceptor } from '../config/interceptors/request.interceptor';
 import { MOCK_API } from '../config/api.config';
 
-import { USER_PROVIDER, USERS_API } from './users';
 import { MainComponent } from './main.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -81,9 +80,7 @@ export function getAPI(): string {
   ], // modules needed to run this module
   providers: [
     httpInterceptorProviders,
-    Title, {
-      provide: USERS_API, useFactory: getAPI,
-    }, USER_PROVIDER, { provide: NEWS_API, useFactory: getAPI, } ,
+    Title, { provide: NEWS_API, useFactory: getAPI, } ,
     NEWS_PROVIDER,
   ], // additional providers needed for this module
   entryComponents: [ ],

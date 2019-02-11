@@ -5,8 +5,6 @@ import { Title } from '@angular/platform-browser';
 import { TdDigitsPipe } from '@covalent/core/common';
 import { TdLoadingService } from '@covalent/core/loading';
 
-import { UserService, IUser } from '../users';
-
 import { ProductsService, AlertsService } from '../../services';
 
 import { multi } from './data';
@@ -24,7 +22,6 @@ export class DashboardComponent implements OnInit {
   year: any = new Date().getFullYear();
 
   items: Object[];
-  users: IUser[];
   products: Object[];
   alerts: Object[];
 
@@ -53,7 +50,6 @@ export class DashboardComponent implements OnInit {
 
   constructor(private _titleService: Title,
               private _newsService: NewsService,
-              private _userService: UserService,
               private _alertsService: AlertsService,
               private _loadingService: TdLoadingService) {
                 // Chart

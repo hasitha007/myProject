@@ -85,7 +85,7 @@ export class NewsFormComponent implements OnInit {
       this.created = newsItem.created
       this.email = newsItem.email;
     } catch (error) {
-      this._dialogService.openAlert({message: 'There was an error loading the user'});
+      this._dialogService.openAlert({message: 'There was an error loading the news'});
     } finally {
       this._loadingService.resolve('news.form');
     }
